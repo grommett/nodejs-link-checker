@@ -1,0 +1,26 @@
+{
+  "name": "link-checker",
+  "version": "0.1.0",
+  "description": "A site link checker.",
+  "main": "crawler.js",
+  "scripts": {
+    "test": "mocha tests/resolver.js"
+  },
+  "keywords": [
+    "link",
+    "checker",
+    "nodejs"
+  ],
+  "author": "David Ford",
+  "license": "ISC",
+  "dependencies": {
+    "URIjs": "^1.14.1",
+    "cheerio": "^0.18.0",
+    "npm": "^2.6.0",
+    "request": "^2.53.0",
+    "underscore": "^1.8.2"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.1"
+  }
+}
