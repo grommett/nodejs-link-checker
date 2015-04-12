@@ -3,9 +3,11 @@
 "use strict";
 var _ = require('underscore');
 
-function link(str) {
+function link(str, referer) {
   var referers = [];
   var url = str;
+
+  if(referer) referers.push(referer);
 
   return {
     broken: false,
@@ -17,7 +19,9 @@ function link(str) {
 
     referer: function(ref) {
       if(ref) {
-        referers.push(ref);
+        if(!_.includes(referers, ref)) {
+          referers.push(ref);
+        }
       }
       return this;
     },
