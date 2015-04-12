@@ -1,26 +1,30 @@
 {
   "name": "link-checker",
   "version": "0.1.0",
-  "description": "A site link checker.",
+  "repository": "https://github.com/grommett/nodejs-link-checker",
+  "description": "A site link checker built with NodeJS. Inspired by Ruby's Robinson.",
   "main": "crawler.js",
   "scripts": {
-    "test": "mocha tests/resolver.js"
+    "test": "mocha ./tests/**/*.js",
+    "lint-link": "jshint ./link.js ./links.js"
   },
   "keywords": [
     "link",
     "checker",
-    "nodejs"
+    "nodejs",
+    "robinson"
   ],
   "author": "David Ford",
   "license": "ISC",
   "dependencies": {
-    "URIjs": "^1.14.1",
     "cheerio": "^0.18.0",
     "npm": "^2.6.0",
     "request": "^2.53.0",
     "underscore": "^1.8.2"
   },
   "devDependencies": {
+    "express": "^4.12.3",
+    "jshint": "^2.7.0",
     "mocha": "^2.2.1"
   }
 }

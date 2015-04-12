@@ -2,36 +2,32 @@ var request = require("request");
 var _ = require("underscore");
 var EventEmitter  = require('events').EventEmitter;
 var cheerio = require('cheerio');
-var URI = require('URIjs');
 var colors = require('colors');
-var URLUtils = require('./URLUtils');
-var crawled = [];
-var broken = [];
 var nodeUrl = require('url');
+var link = require('./link');
+// 
+var crawled = [];
+
 // Defaults
 var host = 'localhost';
 var port = 80;
 var protocol = 'http';
-var dir = '/';
+var path = '/';
 var debug = false;
-var readResponse = 0;
+var broken = [];
 crawler = new EventEmitter();
-var linkObj = {
-                url:undefined, 
-                broken: false, 
-                referers: []
-              }
 
 /*
- Interface to this module
+ Crawler
 */
 crawler.crawl = function(url) {
-  var cleanedURL = URI(url);
-  host = cleanedURL.host();
-  port = cleanedURL.port();
-  protocol = cleanedURL.protocol();
-  dir = cleanedURL.directory();
-  var url = protocol+'://'+host+dir;
+  var cleanedURL = nodeUrl.parse(url);
+  console.log(cleanedURL);
+  host = cleanedURL.host;
+  port = cleanedURL.port;
+  protocol = cleanedURL.protocol;
+  path = cleanedURL.path;
+  var url = protocol+'//'+host+path;
   this.emit('onstart', {url:url});
   crawlURL(url, 'start');
   return this;
@@ -57,8 +53,7 @@ function crawlURL(url, referer) {
     return;
   }
 
-  var lObj = Object.create(linkObj);
-  lObj.url = url
+  var lObj = link(url);
   crawled.push(lObj);
 
   var data;
@@ -133,7 +128,7 @@ function getURLs(str, referer, baseURL) {
 
 /* 
   Clean out link values that have any of following
-  By returning an empty string 
+  by returning an empty string 
 */
 function cleanLink(link) {
   if(link===undefined) return '';
