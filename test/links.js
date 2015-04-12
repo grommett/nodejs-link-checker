@@ -55,7 +55,6 @@ describe(__filename, function() {
     var link = links.add(newURL, 'referer 1');
     var link2 = links.add(newURL, 'referer 2');
     var link3 = links.add(newURL, 'referer 2');
-    console.log(link.referers());
     assert.strictEqual(link.referers().length, 2);
     done();
   })

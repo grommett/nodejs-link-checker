@@ -5,12 +5,11 @@
   "description": "A site link checker built with NodeJS. Inspired by Ruby's Robinson.",
   "main": "crawler.js",
   "scripts": {
-    "test": "mocha ./tests/**/*.js",
-    "lint-link": "jshint ./link.js ./links.js"
+    "test": "mocha",
+    "lint": "jshint ./link.js ./link-collection.js ./crawler2.js"
   },
   "keywords": [
-    "link",
-    "checker",
+    "link checker",
     "nodejs",
     "robinson"
   ],

@@ -12,7 +12,8 @@ function link(str, referer) {
   return {
     broken: false,
     valid: true,
-
+    statusCode: undefined,
+    
     url: function() {
       return url;
     },
